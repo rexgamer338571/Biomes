@@ -5,7 +5,6 @@ import dev.ng5m.biomes.Biomes;
 import dev.ng5m.biomes.api.Version;
 import net.minecraft.core.Holder;
 import net.minecraft.core.IRegistryWritable;
-import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleParamRedstone;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.MinecraftKey;
@@ -16,13 +15,12 @@ import net.minecraft.world.level.biome.BiomeFog;
 import net.minecraft.world.level.biome.BiomeParticles;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
-import org.bukkit.craftbukkit.v1_20_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_20_R1.CraftServer;
 import org.joml.Vector3f;
 
 import java.lang.reflect.Method;
 
-public class Biomes_v1_20_R3 implements Version {
-
+public class Biomes_v1_20_R1 implements Version {
     @Override
     public boolean createBiome(MinecraftKey key, Biomes.BiomeBase base, Biomes.BiomeColor color, Biomes.Particle particle) {
         String root = "biomes." + key.a() + "." + key.b();
@@ -31,10 +29,10 @@ public class Biomes_v1_20_R3 implements Version {
         CraftServer craftServer = (CraftServer) server;
         DedicatedServer dedicatedServer = craftServer.getServer();
 
-        ResourceKey<BiomeBase> newKey = ResourceKey.a(Registries.at, key);
-        ResourceKey<BiomeBase> oldKey = ResourceKey.a(Registries.at, new MinecraftKey("minecraft", "forest"));
+        ResourceKey<BiomeBase> newKey = ResourceKey.a(Registries.ap, key);
+        ResourceKey<BiomeBase> oldKey = ResourceKey.a(Registries.ap, new MinecraftKey("minecraft", "forest"));
 
-        IRegistryWritable<BiomeBase> writableRegistry = (IRegistryWritable<BiomeBase>) dedicatedServer.aZ().d(Registries.at);
+        IRegistryWritable<BiomeBase> writableRegistry = (IRegistryWritable<BiomeBase>) dedicatedServer.aV().d(Registries.ap);
 
         if (writableRegistry.c(key)) {
             Biomes.getInstance().getLogger().warning("Registry already contains key " + key);

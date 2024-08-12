@@ -8,7 +8,15 @@ import java.lang.reflect.Field;
 
 public interface Version {
     boolean createBiome(MinecraftKey key, Biomes.BiomeBase base, Biomes.BiomeColor color, Biomes.Particle particle);
-    void freezeRegistry(Registry<?> registry, boolean shouldBeFrozen);
+    default void freezeRegistry(Registry<?> registry, boolean shouldBeFrozen, String field) {
+        try {
+            Field frozen = registry.getClass().getDeclaredField(field);
+            frozen.setAccessible(true);
+            frozen.set(registry, shouldBeFrozen);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    };
 
     default void bananas(String root, Object object) {
         for (Field field : object.getClass().getDeclaredFields()) {

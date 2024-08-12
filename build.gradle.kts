@@ -4,6 +4,8 @@ plugins {
     id("com.gradleup.shadow") version "8.3.0"
 }
 
+version = "1.0.0"
+
 allprojects {
     group = "dev.ng5m"
     version = project.property("version")!!
@@ -22,6 +24,9 @@ allprojects {
 dependencies {
     implementation(project(":core"))
 
+    implementation(project(":v1_19_R3"))
+    implementation(project(":v1_20_R1"))
+    implementation(project(":v1_20_R2"))
     implementation(project(":v1_20_R3"))
 }
 
@@ -31,7 +36,7 @@ tasks {
     }
 
     shadowJar {
-        archiveBaseName.set("")
+        archiveBaseName.set("biomes")
     }
 
     build {
