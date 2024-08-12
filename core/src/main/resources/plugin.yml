@@ -1,0 +1,4 @@
+name: Biomes
+version: '${version}'
+main: dev.ng5m.biomes.Biomes
+api-version: 1.13
