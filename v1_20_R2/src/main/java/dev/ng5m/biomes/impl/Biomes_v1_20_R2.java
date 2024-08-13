@@ -2,10 +2,10 @@ package dev.ng5m.biomes.impl;
 
 import com.mojang.serialization.Lifecycle;
 import dev.ng5m.biomes.Biomes;
-import dev.ng5m.biomes.api.Version;
+import dev.ng5m.biomes.api.VersionAbove1_16;
+import dev.ng5m.biomes.api.VersionAll;
 import net.minecraft.core.Holder;
 import net.minecraft.core.IRegistryWritable;
-import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleParamRedstone;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.MinecraftKey;
@@ -21,7 +21,7 @@ import org.joml.Vector3f;
 
 import java.lang.reflect.Method;
 
-public class Biomes_v1_20_R2 implements Version {
+public class Biomes_v1_20_R2 implements VersionAbove1_16 {
     @Override
     public boolean createBiome(MinecraftKey key, Biomes.BiomeBase base, Biomes.BiomeColor color, Biomes.Particle particle) {
         String root = "biomes." + key.a() + "." + key.b();

@@ -24,6 +24,11 @@ allprojects {
 dependencies {
     implementation(project(":core"))
 
+    implementation(project(":v1_16_R3"))
+    implementation(project(":v1_17_R1"))
+    implementation(project(":v1_18_R2"))
+    implementation(project(":v1_19_R1"))
+    implementation(project(":v1_19_R2"))
     implementation(project(":v1_19_R3"))
     implementation(project(":v1_20_R1"))
     implementation(project(":v1_20_R2"))

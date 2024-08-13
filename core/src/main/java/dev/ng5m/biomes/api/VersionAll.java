@@ -2,12 +2,10 @@ package dev.ng5m.biomes.api;
 
 import dev.ng5m.biomes.Biomes;
 import net.minecraft.core.Registry;
-import net.minecraft.resources.MinecraftKey;
 
 import java.lang.reflect.Field;
 
-public interface Version {
-    boolean createBiome(MinecraftKey key, Biomes.BiomeBase base, Biomes.BiomeColor color, Biomes.Particle particle);
+public interface VersionAll {
     default void freezeRegistry(Registry<?> registry, boolean shouldBeFrozen, String field) {
         try {
             Field frozen = registry.getClass().getDeclaredField(field);

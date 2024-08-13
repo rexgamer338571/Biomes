@@ -2,7 +2,8 @@ package dev.ng5m.biomes.impl;
 
 import com.mojang.serialization.Lifecycle;
 import dev.ng5m.biomes.Biomes;
-import dev.ng5m.biomes.api.Version;
+import dev.ng5m.biomes.api.VersionAbove1_16;
+import dev.ng5m.biomes.api.VersionAll;
 import net.minecraft.core.Holder;
 import net.minecraft.core.IRegistryWritable;
 import net.minecraft.core.particles.ParticleParamRedstone;
@@ -20,7 +21,7 @@ import org.joml.Vector3f;
 
 import java.lang.reflect.Method;
 
-public class Biomes_v1_19_R3 implements Version {
+public class Biomes_v1_19_R3 implements VersionAbove1_16 {
     @Override
     public boolean createBiome(MinecraftKey key, Biomes.BiomeBase base, Biomes.BiomeColor color, Biomes.Particle particle) {
         String root = "biomes." + key.a() + "." + key.b();
@@ -70,8 +71,6 @@ public class Biomes_v1_19_R3 implements Version {
 
             Holder.c<BiomeBase> ref = writableRegistry.a(newKey, built, Lifecycle.stable());
 
-            // 1.20.4 start
-
             Method bindKey = Holder.c.class.getDeclaredMethod("b", ResourceKey.class);
             Method bindValue = Holder.c.class.getDeclaredMethod("b", Object.class);
 
@@ -80,8 +79,6 @@ public class Biomes_v1_19_R3 implements Version {
 
             bindKey.invoke(ref, newKey);
             bindValue.invoke(ref, built);
-
-            // 1.20.4 end
         } catch (Exception x) {
             x.printStackTrace();
             apples(root);

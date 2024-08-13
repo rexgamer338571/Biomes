@@ -16,13 +16,12 @@ import net.minecraft.world.level.biome.BiomeFog;
 import net.minecraft.world.level.biome.BiomeParticles;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
-import org.bukkit.craftbukkit.v1_20_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_19_R2.CraftServer;
 import org.joml.Vector3f;
 
 import java.lang.reflect.Method;
 
-public class Biomes_v1_20_R3 implements VersionAbove1_16 {
-
+public class Biomes_v1_19_R2 implements VersionAbove1_16 {
     @Override
     public boolean createBiome(MinecraftKey key, Biomes.BiomeBase base, Biomes.BiomeColor color, Biomes.Particle particle) {
         String root = "biomes." + key.a() + "." + key.b();
@@ -31,10 +30,10 @@ public class Biomes_v1_20_R3 implements VersionAbove1_16 {
         CraftServer craftServer = (CraftServer) server;
         DedicatedServer dedicatedServer = craftServer.getServer();
 
-        ResourceKey<BiomeBase> newKey = ResourceKey.a(Registries.at, key);
-        ResourceKey<BiomeBase> oldKey = ResourceKey.a(Registries.at, new MinecraftKey("minecraft", "forest"));
+        ResourceKey<BiomeBase> newKey = ResourceKey.a(Registries.al, key);
+        ResourceKey<BiomeBase> oldKey = ResourceKey.a(Registries.al, new MinecraftKey("minecraft", "forest"));
 
-        IRegistryWritable<BiomeBase> writableRegistry = (IRegistryWritable<BiomeBase>) dedicatedServer.aZ().d(Registries.at);
+        IRegistryWritable<BiomeBase> writableRegistry = (IRegistryWritable<BiomeBase>) dedicatedServer.aW().d(Registries.al);
 
         if (writableRegistry.c(key)) {
             Biomes.getInstance().getLogger().warning("Registry already contains key " + key);
@@ -47,7 +46,7 @@ public class Biomes_v1_20_R3 implements VersionAbove1_16 {
 
             BiomeBase.a builder = new BiomeBase.a();
             builder.a(forest.b());
-            builder.a(forest.d());
+            builder.a(forest.e());
 
             builder.a(base.temperature());
             builder.b(base.downfall());
@@ -72,8 +71,6 @@ public class Biomes_v1_20_R3 implements VersionAbove1_16 {
 
             Holder.c<BiomeBase> ref = writableRegistry.a(newKey, built, Lifecycle.stable());
 
-            // 1.20.4 start
-
             Method bindKey = Holder.c.class.getDeclaredMethod("b", ResourceKey.class);
             Method bindValue = Holder.c.class.getDeclaredMethod("b", Object.class);
 
@@ -82,8 +79,6 @@ public class Biomes_v1_20_R3 implements VersionAbove1_16 {
 
             bindKey.invoke(ref, newKey);
             bindValue.invoke(ref, built);
-
-            // 1.20.4 end
         } catch (Exception x) {
             x.printStackTrace();
             apples(root);
